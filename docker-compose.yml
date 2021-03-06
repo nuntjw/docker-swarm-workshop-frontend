@@ -8,7 +8,8 @@ services:
       - "3000:3000"
     volumes:
       - .:/usr/src/app
-    command: ["/bin/sh", "-c", "yarn dev"]
+    command: ["/bin/sh", "-c", "yarn && yarn dev"]
+    env_file: .env
 networks:
   default:
     external:
