@@ -1,0 +1,14 @@
+name: Continuous Integration
+on: [push]
+jobs:
+  run-unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - name: Install Nodejs Dependencies
+        run: yarn
+      - name: Unit Test
+        run: yarn test

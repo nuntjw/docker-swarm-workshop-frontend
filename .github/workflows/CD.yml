@@ -1,0 +1,22 @@
+name: Continuous Delivery
+on:
+  push:
+    branches:
+      - develop
+      - staging
+      - main
+jobs:
+  build-and-push-registry:
+    name: Build and Push to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build Image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:${GITHUB_REF##*/} .
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}
+          tag_with_ref: true
