@@ -1,0 +1,15 @@
+version: "2"
+
+services:
+  frontend:
+    build: .
+    working_dir: /usr/src/app
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+    command: ["/bin/sh", "-c", "yarn dev"]
+networks:
+  default:
+    external:
+      name: swarm_network
