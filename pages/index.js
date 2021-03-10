@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import axios from "axios";
+import Head from "next/head";
 
 const Home = props => {
   const [name, setName] = useState("");
@@ -15,24 +16,29 @@ const Home = props => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        height: "100vh"
-      }}
-    >
-      <div>
-        <input onChange={onChangeName} />
-        <button onClick={onSubmit}>Submit</button>
+    <Fragment>
+      <Head>
+        <title>Workshop</title>
+      </Head>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          height: "100vh"
+        }}
+      >
+        <div>
+          <input onChange={onChangeName} />
+          <button onClick={onSubmit}>Submit</button>
+        </div>
+        {responseMsg &&
+          <h1>
+            {responseMsg}
+          </h1>}
       </div>
-      {responseMsg &&
-        <h1>
-          {responseMsg}
-        </h1>}
-    </div>
+    </Fragment>
   );
 };
 
