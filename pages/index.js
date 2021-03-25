@@ -31,7 +31,7 @@ const Home = props => {
       >
         <div>
           <input onChange={onChangeName} />
-          <button onClick={onSubmit}>Submit</button>
+          <button onClick={onSubmit}>Submit Your Name</button>
         </div>
         {responseMsg &&
           <h1>
